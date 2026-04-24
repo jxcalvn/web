@@ -3,86 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio - Peter Juan Calviano</title>
+    <title>Detail Proyek</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <nav class="navbar">
-        <a href="#" class="logo">Peter Juan Calviano</a>
+        <a href="index.html" class="logo">Peter Juan Calviano</a>
         <div class="nav-links">
-            <a href="#keahlian">Keahlian</a>
-            <a href="#proyek">Proyek</a>
-            <a href="#kontak">Kontak</a>
+            <a href="index.html#keahlian">Keahlian</a>
+            <a href="index.html#proyek">Proyek</a>
+            <a href="index.html#kontak">Kontak</a>
         </div>
     </nav>
 
-    <div class="container animate-fade">
-        <section class="hero">
-            <div class="hero-text">
-                <h1>Halo, Saya <br><span>Peter Juan Calviano</span></h1>
-                <p>Saya Adalah Programmer dari SMK Multi Karya</p>
-                <a href="#kontak" class="btn">Mari Berdiskusi</a>
-            </div>
-            <div class="hero-image">
-                <img src="https://bmw.astra.co.id/wp-content/uploads/2023/07/BMW.svg_.png" alt="Foto Profil">
-            </div>
-        </section>
+    <div class="container animate-fade" style="padding-bottom: 0;">
+        <a href="index.html" class="back-link">&larr; Kembali</a>
 
-        <h2 id="keahlian" class="section-title">Keahlian Teknis</h2>
-        <div class="skills-container">
-            <span class="skill-badge"><i class="devicon-html5-plain" style="color: #e34f26; margin-right: 5px;"></i> HTML5</span>
-            <span class="skill-badge"><i class="devicon-css3-plain" style="color: #1572b6; margin-right: 5px;"></i> CSS3</span>
-            <span class="skill-badge"><i class="devicon-javascript-plain" style="color: #f7df1e; margin-right: 5px;"></i> JavaScript Dasar</span>
-            <span class="skill-badge"><i class="devicon-github-original" style="margin-right: 5px;"></i> Git & GitHub</span>
-            <span class="skill-badge"><i class="devicon-figma-plain" style="color: #F24E1E; margin-right: 5px;"></i> UI/UX Design</span>
-        </div>
-
-        <div class="section-alternate">
-            <h2 id="proyek" class="section-title" style="margin-top: 0;">Proyek Pilihan</h2>
-            
-            <div class="portfolio-grid" id="daftar-proyek">
+        <div class="project-header">
+            <h1 id="judul-proyek">Memuat Proyek...</h1>
+            <div id="badge-keahlian" class="skills-container" style="margin-bottom: 20px;">
                 </div>
         </div>
 
-        <h2 id="kontak" class="section-title">Hubungi Saya</h2>
-        <div class="contact-links">
-            <a href="mailto:juancalviano1@gmail.com">Email</a>
-            <a href="https://Instagram.com/jxcalvn" target="_blank">Instagram</a>
-            <a href="https://github.com/jxcalvn" target="_blank">GitHub</a>
+        <img id="gambar-proyek" src="https://placehold.co/1200x600/f8fafc/64748b?text=Loading..." alt="Banner Proyek" class="project-banner">
+
+        <div class="section-alternate">
+            <div class="project-body">
+                <h2>Latar Belakang Proyek</h2>
+                <p id="teks-latar">Memuat data...</p>
+
+                <h2>Tantangan & Solusi</h2>
+                <p id="teks-tantangan">Memuat data...</p>
+
+                <h2>Apa yang Saya Pelajari?</h2>
+                <p id="teks-pelajaran">Memuat data...</p>
+
+                <div style="text-align: center; margin-top: 50px;">
+                    <a id="demo" href="#" target="_blank" class="btn">Demo</a>
+                </div>
+            </div>
         </div>
     </div>
 
-    <footer>
+    <footer style="border-top: none; padding-top: 30px;">
         <p>&copy; 2026 Peter Juan Calviano</p>
     </footer>
 
     <script src="data.js"></script>
 
     <script>
-        const bagianProyek = document.getElementById('daftar-proyek');
-        let htmlCard = '';
+        const urlParams = new URLSearchParams(window.location.search);
+        const proyekId = urlParams.get('id');
 
-        for (const [id, data] of Object.entries(databaseProyek)) {
+        if (proyekId && databaseProyek[proyekId]) {
+            const data = databaseProyek[proyekId]; 
+
+            document.getElementById('judul-proyek').innerText = data.judul;
+            document.getElementById('gambar-proyek').src = data.gambar;
+            document.getElementById('teks-latar').innerText = data.latar;
+            document.getElementById('teks-tantangan').innerText = data.tantangan;
+            document.getElementById('teks-pelajaran').innerText = data.pelajaran;
+            document.getElementById('demo').href = data.link;
+
+            let badgeHTML = "";
+            data.keahlian.forEach(function(skill) {
+                badgeHTML += `<span class="skill-badge">${skill}</span>`;
+            });
+            document.getElementById('badge-keahlian').innerHTML = badgeHTML;
             
-            let deskripsiSingkat = data.latar.substring(0, 90) + "...";
-
-            htmlCard += `
-                <div class="card">
-                    <img src="${data.gambar}" alt="${data.judul}">
-                    <div class="card-content">
-                        <h3>${data.judul}</h3>
-                        <p>${deskripsiSingkat}</p>
-                        <a href="detail.html?id=${id}" class="btn btn-outline" style="text-align: center; display: block; margin-top: 15px;">Lihat Detail</a>
-                    </div>
-                </div>
-            `;
+            document.title = "Detail - " + data.judul;
+        } else {
+            document.getElementById('judul-proyek').innerText = "Proyek Tidak Ditemukan";
+            document.getElementById('teks-latar').innerText = "Maaf, data proyek yang Anda cari tidak ada.";
         }
-
-        bagianProyek.innerHTML = htmlCard;
     </script>
-
 </body>
 </html>
