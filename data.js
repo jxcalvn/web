@@ -9,12 +9,12 @@ const databaseProyek = {
         link: "https://github.com/peterjuan/elearning-project"
     },
     "Peter Juan": {
-        "judul": "Desain UI/UX Platform Kursus Kreatif", 
-        "keahlian": ["Figma", "Adobe XD", "Prototyping", "User Research"],
-        "gambar": "https://rumahstudio.com/wp-content/uploads/2023/08/ux-ui.png",
-        "latar": "Merancang antarmuka aplikasi edukasi yang intuitif untuk meningkatkan minat belajar mandiri generasi Z.",
-        "tantangan": "Menyusun alur navigasi yang sederhana namun informatif agar pengguna tidak mengalami cognitive overload.",
-        "pelajaran": "Memahami pentingnya aksesibilitas warna dan tipografi dalam menciptakan desain yang inklusif.",
-        "link": "https://www.behance.net/peterjuan/elearning-ui-ux"
+        judul: "Desain UI/UX Platform Kursus Kreatif", 
+        keahlian: ["Figma", "Adobe XD", "Prototyping", "User Research"],
+        gambar: "https://rumahstudio.com/wp-content/uploads/2023/08/ux-ui.png",
+        latar: "Merancang antarmuka aplikasi edukasi yang intuitif untuk meningkatkan minat belajar mandiri generasi Z.",
+        tantangan: "Menyusun alur navigasi yang sederhana namun informatif agar pengguna tidak mengalami cognitive overload.",
+        pelajaran: "Memahami pentingnya aksesibilitas warna dan tipografi dalam menciptakan desain yang inklusif.",
+        link: "https://www.behance.net/peterjuan/elearning-ui-ux"
     }
 };
